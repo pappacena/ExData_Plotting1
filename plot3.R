@@ -8,8 +8,10 @@ values <- subset(values, !is.na(Global_active_power))
 
 png("plot3.png", width=480, height=480, units="px", bg="transparent")
 with(values, {
-    plot(DateTime, Global_active_power, type="n",
-         xlab="", ylab="Energy sub metering")
+    plot(DateTime, Sub_metering_1 , type="n",
+         xlab="", ylab="Energy sub metering",
+         ylim=c(min(pmin(Sub_metering_1, Sub_metering_2, Sub_metering_3)),
+                max(pmax(Sub_metering_1, Sub_metering_2, Sub_metering_3))))
     lines(DateTime, Sub_metering_1, col="black")
     lines(DateTime, Sub_metering_2, col="red")
     lines(DateTime, Sub_metering_3, col="blue")
