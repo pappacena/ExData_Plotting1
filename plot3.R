@@ -1,3 +1,4 @@
+# Fetch data
 lines <- grep("^[1-2]/2/2007", readLines("household_power_consumption.txt"), value=TRUE)
 values <- read.csv(textConnection(lines), sep=";")
 names(values) <- c("Date", "Time", "Global_active_power", "Global_reactive_power", "Voltage", "Global_intensity", "Sub_metering_1", "Sub_metering_2", "Sub_metering_3")
@@ -6,6 +7,7 @@ values$DateTime <- strptime(paste(values$Date, values$Time, sep=" "), format="%Y
 
 values <- subset(values, !is.na(Global_active_power))
 
+# Plot data
 png("plot3.png", width=480, height=480, units="px", bg="transparent")
 with(values, {
     plot(DateTime, Sub_metering_1 , type="n",
